@@ -1,0 +1,20 @@
+logging:
+  file: app.log
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    password: ''
+    url: jdbc:h2:file:D:/dev/db/h2/spring_boot_playground/public;AUTO_SERVER=TRUE
+    username: sa
+  jpa:
+   show-sql: true
+   properties:
+      hibernate:
+       format_sql: true
+   hibernate:
+      ddl-auto: none
