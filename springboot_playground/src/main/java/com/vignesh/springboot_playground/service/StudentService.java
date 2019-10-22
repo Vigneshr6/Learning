@@ -24,4 +24,8 @@ public class StudentService {
 	public Student addStudent(Student p) {
 		return repository.save(p);
 	}
+	
+	public List<Student> getStudents(Student st) {
+		return repository.getStudentsWithCriteria(st);
+	}
 }

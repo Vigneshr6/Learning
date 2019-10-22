@@ -24,14 +24,14 @@ public class StudentController {
 	private StudentService studentService;
 
 	@GetMapping
-	public ResponseEntity<List<Student>> getAllEmployees() {
-		List<Student> all = studentService.getAll();
-		return new ResponseEntity<>(all,HttpStatus.OK);
+	public List<Student> getEmployees(Student student) {
+		List<Student> all = studentService.getStudents(student);
+		return all;
 	}
-	
+
 	@PostMapping
 	public ResponseEntity<Student> createPerson(@Valid @RequestBody Student s) {
 		Student created = studentService.addStudent(s);
-		return new ResponseEntity<Student>(created,HttpStatus.CREATED);
+		return new ResponseEntity<Student>(created, HttpStatus.CREATED);
 	}
 }
