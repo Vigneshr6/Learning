@@ -27,7 +27,7 @@ import lombok.Data;
 public class Person {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	private String name;
 	@Min(value = 18, message = "Age should be atleast 18")
 	private Integer age;
@@ -37,7 +37,6 @@ public class Person {
 	private LocalDate dob;
 	@Transient
 	@JsonIgnore
-//	@JsonFormat(shape=Shape.STRING)
 //	@Convert(converter = GenderAttributeConverter.class)
 //	@JsonDeserialize(using = GenderJSONDeserializer.class)
 //	@JsonSerialize(using = GenderJsonSerializer.class)

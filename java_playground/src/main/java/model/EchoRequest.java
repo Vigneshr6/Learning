@@ -1,4 +1,4 @@
-package com.vignesh.springboot_playground.model;
+package model;
 
 public class EchoRequest {
 	private String message;

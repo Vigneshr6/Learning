@@ -27,6 +27,8 @@ public class StudentFilterRepositoryImpl implements StudentFilterRepository {
 		Root<Student> student = query.from(Student.class);
 		List<Predicate> predicates = new ArrayList<>();
 
+		if (filter.getId() != null)
+			predicates.add(cb.equal(student.get("id"), filter.getId()));
 		if (filter.getName() != null)
 			predicates.add(cb.equal(student.get("name"), filter.getName()));
 		if (filter.getAge() != null)

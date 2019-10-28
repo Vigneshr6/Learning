@@ -1,5 +1,10 @@
 logging:
-  file: app.log
+  level:
+    com.vignesh.springboot_playground: debug
+#    org.hibernate.sql: debug
+#    org.hibernate.type.descriptor.sql: trace
+  pattern:
+    console: '%d{HH:mm:ss.SSS} [%t] %-5level %logger{36}.%method - %msg%n'
 management:
   endpoints:
     web:
@@ -17,4 +22,8 @@ spring:
       hibernate:
        format_sql: true
    hibernate:
-      ddl-auto: create
+      ddl-auto: none
+  h2:
+    console:
+      enabled: true
+      
