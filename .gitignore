@@ -4,4 +4,4 @@
 target
 *.log
 *.class
-.gitignore
+*.springBeans
