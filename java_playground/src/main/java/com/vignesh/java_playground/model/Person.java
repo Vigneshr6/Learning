@@ -1,20 +1,28 @@
 package com.vignesh.java_playground.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.PostLoad;
 import javax.persistence.PrePersist;
 import javax.persistence.Transient;
 
-import lombok.Data;
+import org.hibernate.annotations.BatchSize;
 
-@Data
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @Entity
 public class Person {
 	@Id
@@ -29,6 +37,9 @@ public class Person {
 	@Column(name="gender")
 	private String genderValue;
 	private LocalDate dob;
+	@OneToMany(mappedBy = "owner",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@BatchSize(size = 10)
+	private List<Car> cars;
 
 	public Person(long id, String name) {
 		super();
@@ -58,4 +69,11 @@ public class Person {
 		genderValue = gender.getShortName();
 	}
 
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", name=" + name + ", age=" + age + ", occupation=" + occupation + ", gender="
+				+ gender + ", genderValue=" + genderValue + ", dob=" + dob + ", cars=" + cars + "]";
+	}
+	
+	
 }

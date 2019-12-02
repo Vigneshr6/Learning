@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.BatchSize;
+
 import lombok.Data;
 
 @Entity
@@ -37,8 +39,7 @@ public class Car {
 	
 	@Override
 	public String toString() {
-		return "Car [id=" + id + ", maker=" + maker + ", model=" + model + ", licenseNo=" + licenseNo + ", owner="
-				+ owner + "]";
+		return "Car [id=" + id + ", maker=" + maker + ", model=" + model + ", licenseNo=" + licenseNo + "]";
 	}
 	
 }

@@ -38,7 +38,7 @@ public class CrudOps {
 		props.put("hibernate.connection.url", "jdbc:h2:./db/hibernate");
 		props.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
 		props.put("hibernate.show_sql", "true");
-		props.put("hibernate.hbm2ddl.auto", "none");
+		props.put("hibernate.hbm2ddl.auto", "update");
 
 		return props;
 	}
@@ -51,7 +51,7 @@ public class CrudOps {
 		props.put("hibernate.connection.password", "Sep.2016");
 		props.put("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
 		props.put("hibernate.show_sql", "true");
-		props.put("hibernate.hbm2ddl.auto", "create");
+		props.put("hibernate.hbm2ddl.auto", "update");
 		
 		return props;
 	}
@@ -65,7 +65,8 @@ public class CrudOps {
 				.buildSessionFactory();
 	}
 
-	@Ignore
+//	@Ignore
+	@Test
 	public void populateData() {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
@@ -91,8 +92,8 @@ public class CrudOps {
 	@Test
 	public void showRecords() {
 		Session session = sessionFactory.openSession();
-		List<Car> cars = session.createCriteria(Car.class).list();
-		System.out.println("\t\tCars");
+		List<Person> cars = session.createCriteria(Person.class).list();
+		System.out.println("\t\tPersons");
 		cars.forEach(System.out::println);
 		session.close();
 	}

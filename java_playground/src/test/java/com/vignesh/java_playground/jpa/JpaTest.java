@@ -40,7 +40,7 @@ public class JpaTest {
 	}
 
 	@Test
-//	@Ignore
+	@Ignore
 	public void testPersist() {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
@@ -65,7 +65,7 @@ public class JpaTest {
 	}
 	
 	@Test
-	public void testGet() {
+	public void testFind() {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		Person person = entityManager.find(Person.class, 1l);
 		System.out.println("person : " + person);
