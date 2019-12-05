@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import com.vignesh.springboot_playground.service.CustomAuthenticationProvider;
 
 @Configuration
-@EnableWebSecurity(debug = true)
+@EnableWebSecurity(debug = false)
 public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 
 	@Autowired
@@ -26,6 +26,8 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
+		.requiresChannel().antMatchers("/**").requiresSecure()
+		.and()
 		.csrf().disable()
 		.authorizeRequests()
 //		.antMatchers("/hello").permitAll()
