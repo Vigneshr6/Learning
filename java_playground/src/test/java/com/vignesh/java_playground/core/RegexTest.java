@@ -60,6 +60,7 @@ public class RegexTest {
 		}
 		System.out.println("matches : "+count);
 	}
+	
 	/*
 	 * checks atleast 1 uppercase
 	 * checks atleats 1 lowercase
@@ -68,7 +69,7 @@ public class RegexTest {
 	 */
 	@Test
 	public void testPassword() {
-		String input = "myPassword1$";
+		String input = "Mypassword1$";
 		if(!Pattern.matches(".*[A-Z]+.*", input)) {
 			fail("Password should contain atleast 1 uppercase letter");
 		}
@@ -82,6 +83,29 @@ public class RegexTest {
 			fail("Password should contain atleast 1 special character");
 		}
 		System.out.println(input+" is valid");
+	}
+	
+	/*
+	 * (?=) is lookahead positive
+	 *  won't capture
+	 *  text will be selected only if it passes the (?=) condition
+	 */
+	@Test
+	public void testLookAheadPositive() {
+		String regex = "(?=[a-zA-Z0-9@#$*]{8,30}$)(?=.*[a-z]+.*)(?=.*[A-Z]+.*)(?=.*[\\d]+.*)(?=.*[@#$*]+.*)(.+)";
+//		String regex = "(?=[a-zA-Z0-9@#$*]{8,30}$)(?=.*[a-z]+.*).+";
+		String input = "Mypassword#1";
+		boolean matches = Pattern.matches(regex, input);
+		System.out.println("matches : " + matches);
+		Pattern pattern = Pattern.compile(regex,Pattern.CASE_INSENSITIVE);
+		Matcher matcher = pattern.matcher(input);
+		int count = 0;
+		while(matcher.find()) {
+			count++;
+			String group = matcher.group();
+			System.out.println("group : " + group);
+		}
+		System.out.println("matches : "+count);
 	}
 	
 	private String getInput() {
